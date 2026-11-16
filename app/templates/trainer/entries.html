@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Base de Conocimiento Cifrada (Entradas)</h1>
+  <form method="post" action="/trainer/entries">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <input type="text" name="topic" placeholder="Tema (ej. infancia, valores)" required maxlength="120">
+    <textarea name="content" rows="5" required placeholder="Escribe tu recuerdo..."></textarea>
+    <button type="submit">Guardar entrada cifrada (AES-256-GCM)</button>
+  </form>
+</section>
+{% endblock %}

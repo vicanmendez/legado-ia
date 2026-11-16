@@ -1,0 +1,4 @@
+Hola {{ username }},
+
+Tu código de verificación de segundo factor (2FA) para legado-ia es: {{ otp_code }}
+Caduca en 10 minutos y admite un máximo de 5 intentos.

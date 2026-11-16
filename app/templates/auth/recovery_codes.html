@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Códigos de Recuperación de Un Solo Uso</h1>
+  <p>Guarda estos códigos en un lugar seguro. Solo se muestran esta única vez:</p>
+  <ul>
+    {% for code in recovery_codes %}
+    <li><code>{{ code }}</code></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,3 @@
+AVISO URGENTE: El albacea {{ executor_username }} ha iniciado una solicitud para activar el modo póstumo en legado-ia.
+Plazo de espera obligatorio: {{ cooldown_hours }} horas (confirmable tras {{ confirmable_after }}).
+Si eres el entrenador y deseas cancelar esta transición, inicia sesión inmediatamente o utiliza el panel de control.

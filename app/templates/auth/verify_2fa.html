@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Verificación de Segundo Factor (2FA)</h1>
+  <form method="post" action="/auth/2fa/otp">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <label>Código de 6 dígitos enviado por correo <input type="text" name="code" pattern="[0-9]{6}" maxlength="6" required></label>
+    <button type="submit">Verificar código OTP</button>
+  </form>
+  <hr>
+  <form method="post" action="/auth/2fa/recovery">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <label>O utiliza un código de recuperación de un solo uso <input type="text" name="recovery_code" required></label>
+    <button type="submit">Acceder con código de recuperación</button>
+  </form>
+</section>
+<script src="/static/js/webauthn.js" defer></script>
+{% endblock %}

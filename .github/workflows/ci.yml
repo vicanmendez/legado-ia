@@ -1,0 +1,57 @@
+name: CI - Seguridad y Portabilidad Dual (SQLite & MariaDB)
+
+on:
+  push:
+    branches: ["main", "001-role-based-access"]
+  pull_request:
+
+jobs:
+  quality-and-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - name: Instalar dependencias con lockfile
+        run: uv sync --frozen --all-extras
+      - name: Linting con Ruff
+        run: uv run ruff check app tests migrations
+      - name: Verificación de tipos con Mypy
+        run: uv run mypy app
+      - name: Análisis estático de seguridad con Bandit
+        run: uv run bandit -r app
+      - name: Auditoría de vulnerabilidades en dependencias
+        run: uv run pip-audit
+
+  test-dual-db:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: root_ci_password
+          MARIADB_DATABASE: legado_test
+          MARIADB_USER: legado_ci
+          MARIADB_PASSWORD: legado_ci_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - name: Instalar dependencias
+        run: uv sync --frozen --all-extras
+      - name: Ejecutar suite completa en SQLite (cobertura seguridad >= 80%)
+        run: uv run pytest --cov=app/services --cov=app/routers --cov-fail-under=80
+      - name: Ejecutar suite completa en MariaDB (utf8mb4)
+        env:
+          TEST_DB_ENGINE: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_NAME: legado_test
+          DB_USER: legado_ci
+          DB_PASSWORD: legado_ci_password
+        run: uv run pytest

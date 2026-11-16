@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Modo Entrevista Guiada</h1>
+  <ul>
+    {% for topic in topics %}
+    <li>
+      <strong>[{{ topic.category }}]</strong> {{ topic.prompt_title }}
+      {% if topic.is_covered %}<span>(Cubierto)</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

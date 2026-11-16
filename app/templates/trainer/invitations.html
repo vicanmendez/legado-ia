@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Invitaciones de Un Solo Uso</h1>
+  <form method="post" action="/trainer/invitations">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <input type="text" name="recipient_hint" placeholder="Alias o referencia">
+    <select name="target_role">
+      <option value="amigo">Amigo</option>
+      <option value="albacea">Albacea</option>
+    </select>
+    <button type="submit">Generar enlace de invitación (256 bits)</button>
+  </form>
+</section>
+{% endblock %}

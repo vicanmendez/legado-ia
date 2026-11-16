@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{{ page_title }} - legado-ia</title>
+  <link rel="stylesheet" href="/static/css/main.css">
+  <script src="/static/vendor/htmx.min.js" defer></script>
+  <script src="/static/js/csrf.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="banner-simulation" role="status">
+      <strong>Aviso de Transparencia:</strong> Este sistema es una simulación digital basada en inteligencia artificial. No estás interactuando con una persona en tiempo real.
+    </div>
+    {% if system_mode == "postumo" %}
+    <div class="banner-posthumous" role="alert">
+      <strong>Modo Póstumo Activo:</strong> El entrenador ha fallecido. Su base de conocimiento permanece en modo de solo lectura para preservar su legado.
+    </div>
+    {% endif %}
+  </header>
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

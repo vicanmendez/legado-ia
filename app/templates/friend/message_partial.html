@@ -1,0 +1,6 @@
+<article class="card">
+  {% if message.used_web_search %}
+  <span class="badge-external">[Información externa]</span>
+  {% endif %}
+  <p>{{ message.content }}</p>
+</article>

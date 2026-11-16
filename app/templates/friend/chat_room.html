@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="banner-simulation">
+    Aviso: Estás conversando con una simulación digital basada en IA del entrenador.
+  </div>
+  {% if posthumous_mode %}
+  <div class="banner-posthumous">
+    El entrenador ha fallecido. Esta conversación interactúa con su legado preservado en modo póstumo.
+  </div>
+  {% endif %}
+  <div id="chat-messages"></div>
+</section>
+<script src="/static/js/chat_sse.js" defer></script>
+{% endblock %}

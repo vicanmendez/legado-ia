@@ -1,0 +1,88 @@
+# ==============================================================================
+# legado-ia - .gitignore (Seguridad por Diseño: CERO secretos ni BD en Git)
+# ==============================================================================
+
+# 1. Secretos, claves criptográficas (KEK) y variables de entorno
+.env
+.env.*
+*.env
+!.env.example
+.kek*
+.db_root*
+*.secret
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+secrets/
+
+# 2. Bases de datos locales (SQLite, volcados SQL, journals y WAL)
+*.db
+*.db-*
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sql
+*.dump
+
+# 3. Paquetes de respaldo cifrados, exportaciones de conocimiento y audios
+*.enc
+*.backup
+*.bak
+*.jsonl
+backups/
+exports/
+data/
+audio/
+uploads/
+
+# 4. Registros (logs) y archivos temporales
+logs/
+*.log
+*.log.*
+*.tmp
+*.swp
+
+# 5. Entornos virtuales y artefactos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+env/
+
+# 6. Cachés de pruebas, cobertura y análisis estático
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# 7. Sistema operativo e IDEs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

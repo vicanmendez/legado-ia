@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Activar cuenta por invitación</h1>
+  <form method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <label>Nombre de usuario <input type="text" name="username" required maxlength="64"></label>
+    <label>Correo electrónico <input type="email" name="email" required maxlength="255"></label>
+    <label>Contraseña (mín. 10 caracteres) <input type="password" name="password" required minlength="10"></label>
+    <input type="hidden" name="altcha_payload" id="altcha_payload">
+    <button type="submit">Activar cuenta</button>
+  </form>
+</section>
+<script src="/static/js/altcha.js" defer></script>
+{% endblock %}

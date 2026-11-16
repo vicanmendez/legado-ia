@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Documento de Personalidad y Estilo Lingüístico</h1>
+  <form method="post" action="/trainer/personality">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <textarea name="body" rows="8" required>{{ body }}</textarea>
+    <button type="submit">Guardar nueva versión cifrada</button>
+  </form>
+</section>
+{% endblock %}

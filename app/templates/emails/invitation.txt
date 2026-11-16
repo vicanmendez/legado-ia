@@ -1,0 +1,3 @@
+Has recibido una invitación de un solo uso para registrarte en legado-ia con el rol {{ target_role }}.
+Enlace de activación: {{ invite_url }}
+Caduca el: {{ expires_at }}
